@@ -12,7 +12,7 @@ async function start() {
   
     
     let makeOutput = `
-      ${commonMakes.map(function (item){
+      ${commonMakes.map(function (make){
         return `<option value="${make}">`;
       }).join('')}`;
 
