@@ -9,12 +9,11 @@ async function start() {
                          "Saab", "Subaru", "Suzuki", "Tesla", "Toyota", "Volkswagen", "Volvo"];
                          
 
-    let filtered = data.Results.filter(function (item) {
-      return commonMakes.includes(item.Make_Name);});
+  
     
     let makeOutput = `
-      ${filtered.map(function (item){
-        return `<option value="${item.Make_Name}">`;
+      ${commonMakes.map(function (item){
+        return `<option value="${make}">`;
       }).join('')}`;
 
     document.getElementById("makes").innerHTML = makeOutput;
