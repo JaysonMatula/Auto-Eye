@@ -4,9 +4,11 @@ body {
   margin: 0;
   font-family: sans-serif;
   padding-top: 40px;
-
-
-
+}
   
-  
+#footer {
+  position: fixed;
+  bottom: 10px;
+  width: 100%;
+  text-align: center;
 }
