@@ -34,9 +34,9 @@ async function makes() {
 makes();
 
 async function models() {
-  const make = document.getElementById("makes").innerHTML = makeOutput;
+  const make = document.getElementById("make").value;
   try {
-    const response = await fetch("https://vpic.nhtsa.dot.gov/api/vehicles/GetModelsForMake/${make}?format=json");
+    const response = await fetch(`https://vpic.nhtsa.dot.gov/api/vehicles/GetModelsForMake/${make}?format=json`);
     const data = await response.json();
 
    let modelOutput = `
