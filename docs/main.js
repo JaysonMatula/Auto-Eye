@@ -51,3 +51,19 @@ async function models() {
   console.log("Error!")
   }
 }
+
+
+function years() {
+  const Year = new Date().getFullYear();
+  let yearOutput = "";
+  
+  for (let y = Year; y >= 1940; y--) {
+    yearOutput += `<option value="${y}">`;
+  }
+  
+  document.getElementById("years").innerHTML = yearOutput;
+  document.getElementById("year").disabled = false;
+
+}
+
+    
