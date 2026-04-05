@@ -58,26 +58,23 @@ async function years() {
   const model = document.getElementById("model").value;
   if (!make || !model) return;
   const Year = new Date().getFullYear();
-  let availableYears = [];
+  const promises = [];
   
   for (let y = Year; y >= Year - 70; y--) {
-    try {
-      const response = await fetch(
-        `https://vpic.nhtsa.dot.gov/api/vehicles/GetModelsForMakeYear/make/${make}/modelyear/${y}?format=json`
-      );
-      const data = await response.json();
-      const exists = data.Results && data.Results.some(item =>
-        item.Model_Name.toLowerCase().includes(model.toLowerCase()));
-      if (exists) {
-        availableYears.push(`<option value="${y}">`);
-     }
-
-  } catch (e) {
-    console.log("Error!", y);
-  }
-}
-  document.getElementById("years").innerHTML = availableYears.join('');
-  document.getElementById("year").disabled = false;
-}
-
+    promises.push(fetch(`https://vpic.nhtsa.dot.gov/api/vehicles/GetModelsForMakeYear/make/${make}/modelyear/${y}?format=json`)
+      .then(response => response.json())
+      .then(data => {
+        const exists = data.Results && data.Results.some(item => {
+          const modelData = item.Model_Name.toLowerCase();
+          const specificModel = model.toLowerCase();
+          return modelData === specificModel || modelData.startsWith(specificModel);});
+        return exists ? `<option value="${y}">` : null;})
     
+.catch(() => null));}
+
+const results = await Promise.all(promises);
+const availableYears = results.filter(Boolean);
+
+document.getElementById("years").innerHTML = availableYears.join('');
+document.getElementById("year").disabled = false;
+}
