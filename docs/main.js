@@ -79,9 +79,9 @@ document.getElementById("years").innerHTML = availableYears.join('');
 document.getElementById("year").disabled = false;
 }
 async function trims() {
-  const make = document.getElementById("make").value.toLowerCase();
+  const make = document.getElementById("make").value.toLowerCase().replace(/\s+/g, "-");
   let model = document.getElementById("model").value.toLowerCase();
-  model = model.replace(/[^a-z0-9]/g, "");
+  model = model.replace(/\s+/g, "-");
   const year = document.getElementById("year").value;
 
   if (!make || !model || !year) return;
