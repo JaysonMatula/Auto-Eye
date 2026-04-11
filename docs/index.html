@@ -7,32 +7,27 @@
   <link rel="stylesheet" href="style.css">
   </head>
   <body>
-    
-    <h1>Auto Depreciation Determiner</h1>
 
+    <h1>Auto Depreciation Determiner</h1>
+<div id="form-container">
+  <div class="vehicle-row">
     <label for="make">Make:</label>
     <input list="makes" id="make" placeholder="Select make" onchange="models()">
     <datalist id="makes"></datalist>
 
-  
-    <br><br>
-    
     <label for="model">Model:</label>
     <input list="models" id="model" placeholder="Select make first" onchange="years()" disabled>
     <datalist id="models"></datalist>
 
-    <br><br>
-    
     <label for="year">Year:</label>
-    <input list="years" id="year" placeholder="Select model first" disabled>
+    <input list="years" id="year" placeholder="Select model first" onchange="trims()" disabled>
     <datalist id="years"></datalist>
-
-    <br><br>
 
     <label for="trim">Trim:</label>
     <input list="trims" id="trim" placeholder="Select year first" disabled>
     <datalist id="trims"></datalist>
-
+  </div>
+</div>
      
 
 
