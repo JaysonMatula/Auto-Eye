@@ -78,3 +78,39 @@ const availableYears = results.filter(Boolean);
 document.getElementById("years").innerHTML = availableYears.join('');
 document.getElementById("year").disabled = false;
 }
+async function trims() {
+  const make = document.getElementById("make").value;
+  const model = document.getElementById("model").value;
+  const year = document.getElementById("year").value;
+  if (!make || !model|| !year) return;
+  try { 
+  const response = await fetch(`https://api.marketcheck.com/v2/search/car/active?api_key=YOUR_KEY&make=${make}&model=${model}&year=${year}`);
+  const data = await response.json();
+  const trims = [...new Set((data.listings || []).map(car => car.trim).filter(Boolean))];
+  document.getElementById("trims").innerHTML = 
+    trims.map(t => `<option value="${t}">`).join('');
+  
+  } catch (e) {
+    console.log("Error loading trims");
+  }
+}
+function addVehicle() {
+  const container = document.getElementById("form-container");
+  const firstRow = container.children[0];
+  const newRow = firstRow.cloneNode(true);
+  newRow.querySelectorAll("input").forEach(input => {
+    input.value = "";
+    input.disabled = true;
+  });
+  const firstInput = newRow.querySelector("input");
+  if (firstInput) firstInput.disabled = false;
+  container.appendChild(newRow);
+}
+document.addEventListener("change", function (e) {
+    if (e.target.id === "trim") {
+      if (e.target.value && !e.target.dataset.added) {
+        e.target.dataset.added = "true";
+        addVehicle();
+      }
+    }
+  });
