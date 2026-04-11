@@ -79,22 +79,29 @@ document.getElementById("years").innerHTML = availableYears.join('');
 document.getElementById("year").disabled = false;
 }
 async function trims() {
-  const make = document.getElementById("make").value;
-  const model = document.getElementById("model").value;
+  const make = document.getElementById("make").value.toLowerCase();
+  const model = document.getElementById("model").value.toLowerCase();
   const year = document.getElementById("year").value;
-  if (!make || !model|| !year) return;
-  try { 
-  const response = await fetch(`https://api.marketcheck.com/v2/search/car/active?api_key=YOUR_KEY&make=${make}&model=${model}&year=${year}`);
-  const data = await response.json();
-  const trims = [...new Set((data.listings || []).map(car => car.trim).filter(Boolean))];
-  document.getElementById("trims").innerHTML = 
-    trims.map(t => `<option value="${t}">`).join('');
-  const trimInput = document.querySelectorAll("#trim");
-  const currentTrim = trimInput[trimInput.length - 1];
-  currentTrim.disabled = false;
-  currentTrim.focus();
+
+  if (!make || !model || !year) return;
+
+  try {
+    const response = await fetch(
+      `https://www.carqueryapi.com/api/0.3/?cmd=getTrims&make=${make}&model=${model}&year=${year}`
+    );
+    const text = await response.text();
+    const json = JSON.parse(
+      text.replace("var carquery = ", "").replace(/;$/, "")
+    );
+    const trims = json.Trims.map(t => t.model_trim).filter(Boolean);
+    document.getElementById("trims").innerHTML =
+      trims.map(t => `<option value="${t}">`).join('');
+    const trimInputs = document.querySelectorAll("#trim");
+    const currentTrim = trimInputs[trimInputs.length - 1];
+    currentTrim.disabled = false;
+    currentTrim.focus();
   } catch (e) {
-    console.log("Error loading trims");
+    console.log("Error!");
   }
 }
 function addVehicle() {
