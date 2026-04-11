@@ -90,7 +90,9 @@ async function trims() {
   document.getElementById("trims").innerHTML = 
     trims.map(t => `<option value="${t}">`).join('');
   const trimInput = document.querySelectorAll("#trim");
-  trimInput[trimInput.length - 1].disabled = false;
+  const currentTrim = trimInput[trimInput.length - 1];
+  currentTrim.disabled = false;
+  currentTrim.focus();
   } catch (e) {
     console.log("Error loading trims");
   }
