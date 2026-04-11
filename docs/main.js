@@ -94,14 +94,15 @@ async function trims() {
     const json = JSON.parse(
       text.replace("var carquery = ", "").replace(/;$/, "")
     );
-    const trims = json.Trims.map(t => t.model_trim).filter(Boolean);
+    const trims = (json.Trims || []).map(t => t.model_trim).filter(Boolean);
     document.getElementById("trims").innerHTML =
       trims.map(t => `<option value="${t}">`).join('');
     const currentTrim = document.getElementById("trim");
     currentTrim.disabled = false;
     currentTrim.focus();
   } catch (e) {
-    console.log("Error!");
+    console.log("Error!", e);
+    document.getElementById("trim").disabled = false;
   }
 }
 function addVehicle() {
