@@ -10,11 +10,11 @@
 
     <h1>Auto Eye</h1>
     <p id="subtitle">Compare vehicles and analyze their market value</p>
+<div id="form-wrapper">
 <div id="form-container">
   <div class="vehicle-row">
     <label for="make">Make:</label>
     <input list="makes" id="make" placeholder="Select make" onchange="models()">
-    <button type="button" onclick="addVehicle()" class="add-btn">+ Add Vehicle</button>
     <datalist id="makes"></datalist>
     <br><br>
 
@@ -36,7 +36,9 @@
     
   </div>
 </div>
-     
+<button type="button" onclick="addVehicle()" class="add-btn">+ Add Vehicle</button>
+
+</div>
 
 
 <footer id="footer">
