@@ -1,3 +1,20 @@
+function carQueryJSONP(url) {
+  return new Promise((resolve, reject) => {
+    const script = document.createElement("script");
+    const callbackName = "cb_" + Math.random().toString(36).substring(2);
+
+    window[callbackName] = function (data) {
+      resolve(data);
+      document.body.removeChild(script);
+      delete window[callbackName];
+    };
+
+    script.src = `${url}&callback=${callbackName}`;
+    script.onerror = reject;
+
+    document.body.appendChild(script);
+  });
+}
 async function makes() {
   try {
     const response = await fetch("https://vpic.nhtsa.dot.gov/api/vehicles/GetAllMakes?format=json");
@@ -88,14 +105,10 @@ async function trims() {
   const make = makeRaw.replace(/\s+/g, "-");
 
   try {
-    const modelRes = await fetch(
+    const modelJson = await carQueryJSONP(
       `https://www.carqueryapi.com/api/0.3/?cmd=getModels&make=${make}`
     );
-    const modelText = await modelRes.text();
-    const modelJson = JSON.parse(
-      modelText.replace("var carquery = ", "").replace(/;$/, "")
-    );
-
+    
     const match = modelJson.Models.find(m =>
       m.model_name.toLowerCase() === modelRaw ||
       m.model_name.toLowerCase().includes(modelRaw)
@@ -109,13 +122,10 @@ async function trims() {
 
     const carQueryModel = match.model_name.toLowerCase().replace(/\s+/g, "-");
 
-    const trimRes = await fetch(
+    const trimJson = await carQueryJSONP(
       `https://www.carqueryapi.com/api/0.3/?cmd=getTrims&make=${make}&model=${carQueryModel}&year=${year}`
     );
-    const trimText = await trimRes.text();
-    const trimJson = JSON.parse(
-      trimText.replace("var carquery = ", "").replace(/;$/, "")
-    );
+    
     console.log(trimJson.Trims);
 
     const trims = (trimJson.Trims || [])
