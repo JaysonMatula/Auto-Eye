@@ -43,7 +43,7 @@ body {
   font-style: italic;
 }
 
-.add-btn, .submit-btn, .add-vehicle-btn {
+.add-btn, .submit-btn, .add-vehicle-btn, .remove-btn {
   margin-top: 40px;
   padding: 10px 15px;
   font-size: 16px;
