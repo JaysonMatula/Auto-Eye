@@ -106,7 +106,7 @@ async function trims() {
 
   try {
     const modelJson = await carQueryJSONP(
-      `https://www.carqueryapi.com/api/0.3/?cmd=getModels&make=${make}`
+      `https://carqueryapi.com/api/0.3/?cmd=getModels&make=${make}`
     );
     
     const match = modelJson.Models.find(m =>
@@ -123,7 +123,7 @@ async function trims() {
     const carQueryModel = match.model_name.toLowerCase().replace(/\s+/g, "-");
 
     const trimJson = await carQueryJSONP(
-      `https://www.carqueryapi.com/api/0.3/?cmd=getTrims&make=${make}&model=${carQueryModel}&year=${year}`
+      `https://carqueryapi.com/api/0.3/?cmd=getTrims&make=${make}&model=${carQueryModel}&year=${year}`
     );
     
     console.log(trimJson.Trims);
