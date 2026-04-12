@@ -159,4 +159,6 @@ function addVehicle() {
   });
   newRow.querySelector("#make").disabled = false;
   container.appendChild(newRow);
+  const btn = document.querySelector(".add-vehicle-btn");
+  if (btn) btn.remove();
 }
