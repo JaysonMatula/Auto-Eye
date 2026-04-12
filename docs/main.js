@@ -152,15 +152,6 @@ function addVehicle() {
     input.value = "";
     input.disabled = true;
   });
-  const firstInput = newRow.querySelector("input");
-  if (firstInput) firstInput.disabled = false;
+  newRow.querySelector("#make").disabled = false;
   container.appendChild(newRow);
 }
-document.addEventListener("change", function (e) {
-    if (e.target.id === "trim") {
-      if (e.target.value && !e.target.dataset.added) {
-        e.target.dataset.added = "true";
-        addVehicle();
-      }
-    }
-  });
