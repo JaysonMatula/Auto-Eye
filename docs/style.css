@@ -4,6 +4,11 @@ body {
   margin: 0;
   font-family: sans-serif;
   padding-top: 40px;
+
+  background-image: url("https://t4.ftcdn.net/jpg/04/42/27/55/360_F_442275541_sQvlQSDzsCLPRyoCXB4jhdgFOhjfUHXV.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
   
 #footer {
@@ -38,9 +43,13 @@ body {
   font-style: italic;
 }
 
-.add-btn {
+.add-btn, .submit-btn {
   margin-top: 40px;
   padding: 10px 15px;
   font-size: 16px;
   cursor: pointer;
+}
+h1 {
+  color: white;
+  margin-bottom: 10px;
 }
