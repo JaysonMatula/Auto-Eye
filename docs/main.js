@@ -178,4 +178,26 @@ const removeBtn = document.createElement("button");
   const btn = document.querySelector(".add-vehicle-btn");
   if (btn) btn.remove();
 }
+function showVehicle() {
+  const firstRow = document.querySelector(".vehicle-row");
 
+  const make = firstRow.querySelector("#make").value;
+  const model = firstRow.querySelector("#model").value;
+  const year = firstRow.querySelector("#year").value;
+
+  if (!make || !model) {
+    alert("Please enter at least make and model");
+    return;
+  }
+
+  const query = `${year} ${make} ${model}`;
+
+  const imageUrl = `https://source.unsplash.com/600x400/?car,${encodeURIComponent(query)}`;
+
+  const output = document.getElementById("vehicle-output");
+
+  output.innerHTML = `
+    <h2>${query}</h2>
+    <img src="${imageUrl}" alt="${query}" style="max-width:100%; border-radius:10px;">
+  `;
+}
