@@ -192,7 +192,7 @@ function showVehicle() {
 
   const query = `${year} ${make} ${model}`;
 
-  const imageUrl = `https://source.unsplash.com/600x400/?car,${encodeURIComponent(query)}`;
+  const imageUrl = `https://source.unsplash.com/featured/600x400/?car,${encodeURIComponent(query)}`;
 
   const output = document.getElementById("vehicle-output");
 
