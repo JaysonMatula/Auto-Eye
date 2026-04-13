@@ -200,10 +200,20 @@ function showVehicle() {
     <h2>${query}</h2>
     <img id="vehicle-img" src="${imageUrl}" alt="${query}" style="max-width:100%; border-radius:10px;"
     onerror="this.onerror=null; this.src='https://via.placeholder.com/600x400?text=No+Image';">
-    <br><br>
-    <button id="remove-image-btn" type="button">Remove Vehicle</button>
-  `;
-  document.getElementById("remove-image-btn").onclick = function () {
-    output.innerHTML = "";
-  };
+    `;
+if (!firstRow.querySelector(".remove-btn")) {
+    const removeBtn = document.createElement("button");
+    removeBtn.textContent = "Remove Vehicle";
+    removeBtn.type = "button";
+    removeBtn.className = "remove-btn";
+
+    removeBtn.onclick = function () {
+      output.innerHTML = ""; 
+      removeBtn.remove();  
+    };
+
+    firstRow.appendChild(removeBtn);
+  }
 }
+    
+    
