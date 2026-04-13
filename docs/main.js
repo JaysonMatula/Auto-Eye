@@ -178,12 +178,12 @@ const removeBtn = document.createElement("button");
   const btn = document.querySelector(".add-vehicle-btn");
   if (btn) btn.remove();
 }
-function showVehicle() {
-  const firstRow = document.querySelector(".vehicle-row");
+function showVehicle(btn) {
+  const row = btn.closest(".vehicle-row");
 
-  const make = firstRow.querySelector("#make").value;
-  const model = firstRow.querySelector("#model").value;
-  const year = firstRow.querySelector("#year").value;
+  const make = row.querySelector("#make").value;
+  const model = row.querySelector("#model").value;
+  const year = row.querySelector("#year").value;
 
   if (!make || !model) {
     alert("Please enter at least make and model");
@@ -201,9 +201,9 @@ function showVehicle() {
     <img id="vehicle-img" src="${imageUrl}" alt="${query}" style="max-width:100%; border-radius:10px;"
     onerror="this.onerror=null; this.src='https://via.placeholder.com/600x400?text=No+Image';">
     `;
-    const inputs = firstRow.querySelectorAll("input");
+    const inputs = row.querySelectorAll("input");
     inputs.forEach(input => input.style.display = "none");
-if (!firstRow.querySelector(".remove-btn")) {
+if (!row.querySelector(".remove-btn")) {
     const removeBtn = document.createElement("button");
     removeBtn.textContent = "Remove Vehicle";
     removeBtn.type = "button";
@@ -218,7 +218,7 @@ if (!firstRow.querySelector(".remove-btn")) {
       removeBtn.remove();  
     };
 
-    firstRow.appendChild(removeBtn);
+    row.appendChild(removeBtn);
   }
 }
     
