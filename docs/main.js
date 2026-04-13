@@ -198,7 +198,14 @@ function showVehicle() {
 
   output.innerHTML = `
     <h2>${query}</h2>
-    <img src="${imageUrl}" alt="${query}" style="max-width:100%; border-radius:10px;"
+    <img id="vehicle-img" src="${imageUrl}" alt="${query}" style="max-width:100%; border-radius:10px;"
     onerror="this.onerror=null; this.src='https://via.placeholder.com/600x400?text=No+Image';">
+    <br><br>
+    <button id="remove-image-btn" type="button">Remove Image</button>
   `;
+  document.getElementById("remove-image-btn").onclick = function () {
+    const img = document.getElementById("vehicle-img");
+    if (img) img.remove();
+    this.remove();
+  };
 }
