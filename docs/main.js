@@ -201,6 +201,8 @@ function showVehicle() {
     <img id="vehicle-img" src="${imageUrl}" alt="${query}" style="max-width:100%; border-radius:10px;"
     onerror="this.onerror=null; this.src='https://via.placeholder.com/600x400?text=No+Image';">
     `;
+    const inputs = firstRow.querySelectorAll("input");
+    inputs.forEach(input => input.style.display = "none");
 if (!firstRow.querySelector(".remove-btn")) {
     const removeBtn = document.createElement("button");
     removeBtn.textContent = "Remove Vehicle";
@@ -209,6 +211,10 @@ if (!firstRow.querySelector(".remove-btn")) {
 
     removeBtn.onclick = function () {
       output.innerHTML = ""; 
+      inputs.forEach(input => {
+        input.style.display = "inline-block";
+        input.disabled = false;
+      });
       removeBtn.remove();  
     };
 
