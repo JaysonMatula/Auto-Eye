@@ -198,6 +198,7 @@ function showVehicle() {
 
   output.innerHTML = `
     <h2>${query}</h2>
-    <img src="${imageUrl}" alt="${query}" style="max-width:100%; border-radius:10px;">
+    <img src="${imageUrl}" alt="${query}" style="max-width:100%; border-radius:10px;"
+    onerror="this.src='https://via.placeholder.com/600x400?text=Car+Image+Not+Found'">
   `;
 }
