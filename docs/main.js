@@ -192,16 +192,15 @@ function showVehicle(btn) {
 
   const query = `${year} ${make} ${model}`;
 
-  const imageUrl = `https://source.unsplash.com/600x400/?${make}+${model}+vehicle`;
+  const imageUrl = `https://picsum.photos/600/400?random=${encodeURIComponent(make + model + year)}`;
 
   const output = document.getElementById("vehicle-output");
 
   output.innerHTML = `
-    <h2>${query}</h2>
-    <img src="${imageUrl}" alt="${query}" 
-      style="max-width:100%; border-radius:10px;"
-      onerror="this.onerror=null; this.src='https://via.placeholder.com/600x400?text=No+Image';">
-  `;
+  <h2>${query}</h2>
+  <img src="${imageUrl}" alt="${query}" 
+    style="max-width:100%; border-radius:10px;">
+`;
 
   const fields = row.querySelectorAll("input, label");
   fields.forEach(el => el.style.display = "none");
