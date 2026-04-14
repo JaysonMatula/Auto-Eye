@@ -192,7 +192,7 @@ function showVehicle(btn) {
 
   const query = `${year} ${make} ${model}`;
 
-  const imageUrl = `https://loremflickr.com/600/400/car,${encodeURIComponent(make)},${encodeURIComponent(model)}`;
+  const imageUrl = `https://source.unsplash.com/600x400/?${encodeURIComponent(make)}+${encodeURIComponent(model)}+car`;
 
   const output = document.getElementById("vehicle-output");
 
