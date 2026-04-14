@@ -192,7 +192,7 @@ function showVehicle(btn) {
 
   const query = `${year} ${make} ${model}`;
 
-  const imageUrl = `https://loremflickr.com/600/400/car,${encodeURIComponent(make)},${encodeURIComponent(model)}`
+  const imageUrl = "https://loremflickr.com/600/400/car";
 
   let display = row.querySelector(".vehicle-display");
 
