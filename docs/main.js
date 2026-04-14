@@ -62,7 +62,7 @@ async function models(el) {
         return `<option value="${item.Model_Name}">`;
       }).join('')}`;
 
-    document.getElementById("models").innerHTML = modelOutput;
+    row.querySelector("#models").innerHTML = modelOutput;
     row.querySelector("#model").disabled = false;
     
     } catch (e) {
@@ -94,7 +94,7 @@ async function years(el) {
 const results = await Promise.all(promises);
 const availableYears = results.filter(Boolean);
 
-document.getElementById("years").innerHTML = availableYears.join('');
+row.querySelector("#years").innerHTML = availableYears.join('');
 row.querySelector("#year").disabled = false;
 }
 async function trims(el) {
@@ -136,7 +136,7 @@ async function trims(el) {
       .map(t => t.model_trim)
       .filter(Boolean);
 
-    document.getElementById("trims").innerHTML =
+    row.querySelector("#trims").innerHTML =
       trims.map(t => `<option value="${t}">`).join('');
 
     const currentTrim = row.querySelector("#trim");
@@ -194,9 +194,15 @@ function showVehicle(btn) {
 
   const imageUrl = `https://loremflickr.com/600/400/car,${encodeURIComponent(make)},${encodeURIComponent(model)}`
 
-  const output = document.getElementById("vehicle-output");
+  let display = row.querySelector(".vehicle-display");
 
-  output.innerHTML = `
+if (!display) {
+  display = document.createElement("div");
+  display.className = "vehicle-display";
+  row.appendChild(display);
+}
+
+  display.innerHTML = `
     <h2>${query}</h2>
     <img id="vehicle-img" src="${imageUrl}" alt="${query}" style="max-width:100%; border-radius:10px;"
     onerror="this.onerror=null; this.src='https://via.placeholder.com/600x400?text=No+Image';">
@@ -210,7 +216,7 @@ if (!row.querySelector(".remove-btn")) {
     removeBtn.className = "remove-btn";
 
     removeBtn.onclick = function () {
-      output.innerHTML = ""; 
+      display.remove(); 
       inputs.forEach(input => {
         input.style.display = "inline-block";
         input.disabled = false;
@@ -219,6 +225,8 @@ if (!row.querySelector(".remove-btn")) {
     };
 
     row.appendChild(removeBtn);
+
+  
   }
 }
     
