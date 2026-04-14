@@ -202,32 +202,34 @@ if (!display) {
   row.appendChild(display);
 }
 
+  display.style.display = "block";
   display.innerHTML = `
     <h2>${query}</h2>
-    <img id="vehicle-img" src="${imageUrl}" alt="${query}" style="max-width:100%; border-radius:10px;"
-    onerror="this.onerror=null; this.src='https://via.placeholder.com/600x400?text=No+Image';">
-    `;
-    const inputs = row.querySelectorAll("input");
-    inputs.forEach(input => input.style.display = "none");
-if (!row.querySelector(".remove-btn")) {
+    <img src="${imageUrl}" alt="${query}" 
+      style="max-width:100%; border-radius:10px;">
+  `;
+
+  const inputs = row.querySelectorAll("input");
+  inputs.forEach(input => input.style.display = "none");
+
+  if (!row.querySelector(".remove-btn")) {
     const removeBtn = document.createElement("button");
     removeBtn.textContent = "Remove Vehicle";
     removeBtn.type = "button";
     removeBtn.className = "remove-btn";
 
     removeBtn.onclick = function () {
-      display.innerHTML = ""; 
+      display.innerHTML = "";
+      display.style.display = "none";
+
       inputs.forEach(input => {
         input.style.display = "inline-block";
         input.disabled = false;
       });
-      removeBtn.remove();  
+
+      removeBtn.remove();
     };
 
     row.appendChild(removeBtn);
-
-  
   }
-}
-    
-    
+} 
