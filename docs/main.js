@@ -216,7 +216,7 @@ if (!row.querySelector(".remove-btn")) {
     removeBtn.className = "remove-btn";
 
     removeBtn.onclick = function () {
-      display.remove(); 
+      display.innerHTML = ""; 
       inputs.forEach(input => {
         input.style.display = "inline-block";
         input.disabled = false;
