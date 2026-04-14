@@ -192,18 +192,11 @@ function showVehicle(btn) {
 
   const query = `${year} ${make} ${model}`;
 
-  const imageUrl = `https://loremflickr.com/600/400/car?lock=${encodeURIComponent(make + model + year)}`;
+  const imageUrl = `https://loremflickr.com/600/400/car,${encodeURIComponent(make)},${encodeURIComponent(model)}`;
 
-  let display = row.querySelector(".vehicle-display");
+  const output = document.getElementById("vehicle-output");
 
-  if (!display) {
-    display = document.createElement("div");
-    display.className = "vehicle-display";
-    row.appendChild(display);
-  }
-
-  display.style.display = "block";
-  display.innerHTML = `
+  output.innerHTML = `
     <h2>${query}</h2>
     <img src="${imageUrl}" alt="${query}" 
       style="max-width:100%; border-radius:10px;"
@@ -216,18 +209,12 @@ function showVehicle(btn) {
   if (!row.querySelector(".remove-btn")) {
     const removeBtn = document.createElement("button");
     removeBtn.textContent = "Remove Vehicle";
-    removeBtn.type = "button";
     removeBtn.className = "remove-btn";
 
     removeBtn.onclick = function () {
-      display.innerHTML = "";
-      display.style.display = "none";
+      output.innerHTML = "";
 
       fields.forEach(el => el.style.display = "block");
-
-      row.querySelectorAll("input").forEach(input => {
-        input.disabled = false;
-      });
 
       removeBtn.remove();
     };
@@ -235,5 +222,4 @@ function showVehicle(btn) {
     row.appendChild(removeBtn);
   }
 }
-
    
