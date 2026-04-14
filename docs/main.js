@@ -192,25 +192,26 @@ function showVehicle(btn) {
 
   const query = `${year} ${make} ${model}`;
 
-  const imageUrl = "https://loremflickr.com/600/400/car";
+  const imageUrl = `https://loremflickr.com/600/400/car?lock=${encodeURIComponent(make + model + year)}`;
 
   let display = row.querySelector(".vehicle-display");
 
-if (!display) {
-  display = document.createElement("div");
-  display.className = "vehicle-display";
-  row.appendChild(display);
-}
+  if (!display) {
+    display = document.createElement("div");
+    display.className = "vehicle-display";
+    row.appendChild(display);
+  }
 
   display.style.display = "block";
   display.innerHTML = `
     <h2>${query}</h2>
     <img src="${imageUrl}" alt="${query}" 
-      style="max-width:100%; border-radius:10px;">
+      style="max-width:100%; border-radius:10px;"
+      onerror="this.onerror=null; this.src='https://via.placeholder.com/600x400?text=No+Image';">
   `;
 
-  const inputs = row.querySelectorAll("input");
-  inputs.forEach(input => input.style.display = "none");
+  const fields = row.querySelectorAll("input, label");
+  fields.forEach(el => el.style.display = "none");
 
   if (!row.querySelector(".remove-btn")) {
     const removeBtn = document.createElement("button");
@@ -222,8 +223,9 @@ if (!display) {
       display.innerHTML = "";
       display.style.display = "none";
 
-      inputs.forEach(input => {
-        input.style.display = "inline-block";
+      fields.forEach(el => el.style.display = "block");
+
+      row.querySelectorAll("input").forEach(input => {
         input.disabled = false;
       });
 
@@ -232,4 +234,6 @@ if (!display) {
 
     row.appendChild(removeBtn);
   }
-} 
+}
+
+   
