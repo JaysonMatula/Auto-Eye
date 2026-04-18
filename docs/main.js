@@ -194,11 +194,21 @@ function showVehicle(btn) {
 
   //const imageUrl = `https://picsum.photos/600/400?random=${encodeURIComponent(make + model + year)}`;
 
-  const output = document.getElementById("vehicle-output");
+  let display = row.querySelector(".vehicle-display");
 
-  output.innerHTML = `
+if (!display) {
+  display = document.createElement("div");
+  display.className = "vehicle-display";
+  row.appendChild(display);
+}
+
+display.innerHTML = `
   <h2>${query}</h2>
-  `;
+`;
+
+//  output.innerHTML = `
+//  <h2>${query}</h2>
+//  `;
 //  <img src="${imageUrl}" alt="${query}" 
 //    style="max-width:100%; border-radius:10px;">
 //`;
@@ -212,7 +222,8 @@ function showVehicle(btn) {
     removeBtn.className = "remove-btn";
 
     removeBtn.onclick = function () {
-      output.innerHTML = "";
+      display.remove();
+      //output.innerHTML = "";
 
       fields.forEach(el => el.style.display = "block");
 
