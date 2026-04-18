@@ -213,7 +213,7 @@ display.innerHTML = `
 //    style="max-width:100%; border-radius:10px;">
 //`;
 
-  const fields = row.querySelectorAll("input, label");
+  const fields = row.querySelectorAll("input, label, .add-btn");
   fields.forEach(el => el.style.display = "none");
 
   if (!row.querySelector(".remove-btn")) {
