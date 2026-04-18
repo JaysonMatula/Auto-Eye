@@ -153,6 +153,7 @@ function addVehicle() {
   if (container.children.length >= 2) return;
   const firstRow = container.children[0];
   const newRow = firstRow.cloneNode(true);
+  newRow.querySelectorAll(".vehicle-display").forEach(el => el.remove());
   newRow.querySelectorAll("input").forEach(input => {
     input.value = "";
     input.disabled = true;
