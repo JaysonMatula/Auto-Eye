@@ -55,3 +55,10 @@ h1, label, #subtitle, #footer {
     0px 0px 3px rgba(0,0,0,0.9),
     0px 0px 6px rgba(0,0,0,0.9);
 }
+
+.vehicle-display {
+  background: rgba(0,0,0,0.6);
+  padding: 20px;
+  border-radius: 12px;
+  margin-top: 20px;
+}
