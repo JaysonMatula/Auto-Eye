@@ -62,7 +62,7 @@ async function models(el) {
         return `<option value="${item.Model_Name}">`;
       }).join('')}`;
 
-    row.querySelector("#models").innerHTML = modelOutput;
+    row.querySelector('datalist[id="models"]').innerHTML = modelOutput;
     row.querySelector("#model").disabled = false;
     
     } catch (e) {
@@ -94,7 +94,7 @@ async function years(el) {
 const results = await Promise.all(promises);
 const availableYears = results.filter(Boolean);
 
-row.querySelector("#years").innerHTML = availableYears.join('');
+row.querySelector('datalist[id="years"]').innerHTML = availableYears.join('');
 row.querySelector("#year").disabled = false;
 }
 async function trims(el) {
@@ -136,7 +136,7 @@ async function trims(el) {
       .map(t => t.model_trim)
       .filter(Boolean);
 
-    row.querySelector("#trims").innerHTML =
+    row.querySelector('datalist[id="trims"]').innerHTML =
       trims.map(t => `<option value="${t}">`).join('');
 
     const currentTrim = row.querySelector("#trim");
