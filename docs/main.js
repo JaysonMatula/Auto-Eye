@@ -217,7 +217,8 @@ if (!display) {
 display.innerHTML = `
   <h2>${query}</h2>
 `;
-
+const addBtn = document.querySelector(".add-vehicle-btn");
+if (addBtn) addBtn.style.display = "inline-block";
 //  output.innerHTML = `
 //  <h2>${query}</h2>
 //  `;
