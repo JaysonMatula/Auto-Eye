@@ -62,7 +62,7 @@ async function models(el) {
         return `<option value="${item.Model_Name}">`;
       }).join('')}`;
 
-    row.querySelector('datalist[id="models"]').innerHTML = modelOutput;
+    row.querySelector('[id^="models"]').innerHTML = modelOutput;
     row.querySelector("#model").disabled = false;
     
     } catch (e) {
@@ -94,7 +94,7 @@ async function years(el) {
 const results = await Promise.all(promises);
 const availableYears = results.filter(Boolean);
 
-row.querySelector('datalist[id="years"]').innerHTML = availableYears.join('');
+row.querySelector('[id^="years"]').innerHTML = availableYears.join('');
 row.querySelector("#year").disabled = false;
 }
 async function trims(el) {
@@ -136,7 +136,7 @@ async function trims(el) {
       .map(t => t.model_trim)
       .filter(Boolean);
 
-    row.querySelector('datalist[id="trims"]').innerHTML =
+    row.querySelector('[id^="trims"]').innerHTML =
       trims.map(t => `<option value="${t}">`).join('');
 
     const currentTrim = row.querySelector("#trim");
@@ -153,6 +153,17 @@ function addVehicle() {
   if (container.children.length >= 2) return;
   const firstRow = container.children[0];
   const newRow = firstRow.cloneNode(true);
+  const uniqueId = Date.now();
+
+newRow.querySelector("#models").id = "models-" + uniqueId;
+newRow.querySelector("#years").id = "years-" + uniqueId;
+newRow.querySelector("#trims").id = "trims-" + uniqueId;
+
+newRow.querySelector("#model").setAttribute("list", "models-" + uniqueId);
+newRow.querySelector("#year").setAttribute("list", "years-" + uniqueId);
+newRow.querySelector("#trim").setAttribute("list", "trims-" + uniqueId);
+
+  
   newRow.querySelectorAll(".vehicle-display").forEach(el => el.remove());
   newRow.querySelectorAll("input").forEach(input => {
     input.value = "";
