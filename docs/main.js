@@ -187,7 +187,13 @@ newRow.querySelector("#make").disabled = false;
 
   removeBtn.onclick = function () {
     newRow.remove();
-  };
+    const container = document.getElementById("form-container");
+  const addBtn = document.querySelector(".add-vehicle-btn");
+
+  if (container.children.length < 2 && addBtn) {
+    addBtn.style.display = "none";
+  }
+};
 
   newRow.appendChild(removeBtn);
 
@@ -233,26 +239,4 @@ if (addBtn) addBtn.style.display = "inline-block";
 
   const fields = row.querySelectorAll("input, label, .add-btn");
   fields.forEach(el => el.style.display = "none");
-
-  if (!row.querySelector(".remove-btn")) {
-    const removeBtn = document.createElement("button");
-    removeBtn.textContent = "Remove Vehicle";
-    removeBtn.className = "remove-btn";
-
-    removeBtn.onclick = function () {
-      display.remove();
-      //output.innerHTML = "";
-
-      fields.forEach(el => el.style.display = "block");
-
-      const addBtn = document.querySelector(".add-vehicle-btn");
-      if (addBtn) addBtn.style.display = "none";
-
-
-      removeBtn.remove();
-    };
-
-    row.appendChild(removeBtn);
-  }
 }
-   
