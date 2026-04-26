@@ -120,7 +120,7 @@ async function trims(el) {
 
     if (!match) {
       console.log("No matching CarQuery model found");
-      row.querySelector("#trim").disabled = false;
+      //row.querySelector("#trim").disabled = false;
       return;
     }
 
@@ -136,16 +136,16 @@ async function trims(el) {
       .map(t => t.model_trim)
       .filter(Boolean);
 
-    row.querySelector('[id^="trims"]').innerHTML =
-      trims.map(t => `<option value="${t}">`).join('');
+    //row.querySelector('[id^="trims"]').innerHTML =
+      //trims.map(t => `<option value="${t}">`).join('');
 
-    const currentTrim = row.querySelector("#trim");
-    currentTrim.disabled = false;
-    currentTrim.focus();
+    //const currentTrim = row.querySelector("#trim");
+    //currentTrim.disabled = false;
+    //currentTrim.focus();
 
   } catch (e) {
     console.log("Error!", e);
-    row.querySelector("#trim").disabled = false;
+    //row.querySelector("#trim").disabled = false;
   }
 }
 
@@ -160,11 +160,11 @@ function addVehicle() {
 
 newRow.querySelector("#models").id = "models-" + uniqueId;
 newRow.querySelector("#years").id = "years-" + uniqueId;
-newRow.querySelector("#trims").id = "trims-" + uniqueId;
+//newRow.querySelector("#trims").id = "trims-" + uniqueId;
 
 newRow.querySelector("#model").setAttribute("list", "models-" + uniqueId);
 newRow.querySelector("#year").setAttribute("list", "years-" + uniqueId);
-newRow.querySelector("#trim").setAttribute("list", "trims-" + uniqueId);
+//newRow.querySelector("#trim").setAttribute("list", "trims-" + uniqueId);
 newRow.querySelectorAll(".vehicle-display").forEach(el => el.remove());
 
 newRow.querySelectorAll("datalist").forEach(dl => dl.innerHTML = "");
