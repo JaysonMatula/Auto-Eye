@@ -233,7 +233,13 @@ function showVehicle(btn) {
 if (!display) {
   display = document.createElement("div");
   display.className = "vehicle-display";
+  const removeBtn = row.querySelector(".remove-btn");
+
+if (removeBtn) {
+  row.insertBefore(display, removeBtn);
+} else {
   row.appendChild(display);
+}
 }
 
 display.innerHTML = `
