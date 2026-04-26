@@ -180,24 +180,35 @@ newRow.querySelectorAll("input, label, .add-btn").forEach(el => {
 
 newRow.querySelector("#make").disabled = false;
 
-  const removeBtn = document.createElement("button");
-  removeBtn.textContent = "Remove Vehicle";
-  removeBtn.type = "button";
-  removeBtn.className = "remove-btn";
-
-  removeBtn.onclick = function () {
-    newRow.remove();
-    const container = document.getElementById("form-container");
-  const addBtn = document.querySelector(".add-vehicle-btn");
-
-  if (container.children.length < 2 && addBtn) {
-    addBtn.style.display = "none";
-  }
-};
-
-  newRow.appendChild(removeBtn);
-
   container.appendChild(newRow);
+
+const rows = container.querySelectorAll(".vehicle-row");
+
+if (rows.length === 2) {
+  rows.forEach(row => {
+    if (!row.querySelector(".remove-btn")) {
+      const btn = document.createElement("button");
+      btn.textContent = "Remove Vehicle";
+      btn.type = "button";
+      btn.className = "remove-btn";
+
+      btn.onclick = function () {
+        row.remove();
+
+        const addBtn = document.querySelector(".add-vehicle-btn");
+        if (container.children.length < 2 && addBtn) {
+          addBtn.style.display = "none";
+        }
+
+        if (container.children.length === 1) {
+          container.querySelectorAll(".remove-btn").forEach(b => b.remove());
+        }
+      };
+
+      row.appendChild(btn);
+    }
+  });
+  }
 }
   
 
