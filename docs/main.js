@@ -158,22 +158,27 @@ function addVehicle() {
   const newRow = firstRow.cloneNode(true);
   const uniqueId = Date.now();
 
-  newRow.querySelector("#models").id = "models-" + uniqueId;
-  newRow.querySelector("#years").id = "years-" + uniqueId;
-  newRow.querySelector("#trims").id = "trims-" + uniqueId;
+newRow.querySelector("#models").id = "models-" + uniqueId;
+newRow.querySelector("#years").id = "years-" + uniqueId;
+newRow.querySelector("#trims").id = "trims-" + uniqueId;
 
-  newRow.querySelector("#model").setAttribute("list", "models-" + uniqueId);
-  newRow.querySelector("#year").setAttribute("list", "years-" + uniqueId);
-  newRow.querySelector("#trim").setAttribute("list", "trims-" + uniqueId);
+newRow.querySelector("#model").setAttribute("list", "models-" + uniqueId);
+newRow.querySelector("#year").setAttribute("list", "years-" + uniqueId);
+newRow.querySelector("#trim").setAttribute("list", "trims-" + uniqueId);
+newRow.querySelectorAll(".vehicle-display").forEach(el => el.remove());
 
-  newRow.querySelectorAll("datalist").forEach(dl => dl.innerHTML = "");
+newRow.querySelectorAll("datalist").forEach(dl => dl.innerHTML = "");
 
-  newRow.querySelectorAll("input").forEach(input => {
-    input.value = "";
-    input.disabled = true;
-  });
+newRow.querySelectorAll("input").forEach(input => {
+  input.value = "";
+  input.disabled = true;
+});
 
-  newRow.querySelector("#make").disabled = false;
+newRow.querySelectorAll("input, label, .add-btn").forEach(el => {
+  el.style.display = "block";
+});
+
+newRow.querySelector("#make").disabled = false;
 
   const removeBtn = document.createElement("button");
   removeBtn.textContent = "Remove Vehicle";
