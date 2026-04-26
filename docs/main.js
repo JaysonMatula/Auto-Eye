@@ -245,6 +245,10 @@ if (addBtn) addBtn.style.display = "inline-block";
 
       fields.forEach(el => el.style.display = "block");
 
+      const addBtn = document.querySelector(".add-vehicle-btn");
+      if (addBtn) addBtn.style.display = "none";
+
+
       removeBtn.remove();
     };
 
