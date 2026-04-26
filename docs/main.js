@@ -148,48 +148,48 @@ async function trims(el) {
     row.querySelector("#trim").disabled = false;
   }
 }
+
+
 function addVehicle() {
   const container = document.getElementById("form-container");
   if (container.children.length >= 2) return;
+
   const firstRow = container.children[0];
   const newRow = firstRow.cloneNode(true);
   const uniqueId = Date.now();
 
-newRow.querySelector("#models").id = "models-" + uniqueId;
-newRow.querySelector("#years").id = "years-" + uniqueId;
-newRow.querySelector("#trims").id = "trims-" + uniqueId;
+  newRow.querySelector("#models").id = "models-" + uniqueId;
+  newRow.querySelector("#years").id = "years-" + uniqueId;
+  newRow.querySelector("#trims").id = "trims-" + uniqueId;
 
-newRow.querySelector("#model").setAttribute("list", "models-" + uniqueId);
-newRow.querySelector("#year").setAttribute("list", "years-" + uniqueId);
-newRow.querySelector("#trim").setAttribute("list", "trims-" + uniqueId);
+  newRow.querySelector("#model").setAttribute("list", "models-" + uniqueId);
+  newRow.querySelector("#year").setAttribute("list", "years-" + uniqueId);
+  newRow.querySelector("#trim").setAttribute("list", "trims-" + uniqueId);
 
-  
-  newRow.querySelectorAll(".vehicle-display").forEach(el => el.remove());
+  newRow.querySelectorAll("datalist").forEach(dl => dl.innerHTML = "");
+
   newRow.querySelectorAll("input").forEach(input => {
     input.value = "";
     input.disabled = true;
   });
+
   newRow.querySelector("#make").disabled = false;
-const removeBtn = document.createElement("button");
+
+  const removeBtn = document.createElement("button");
   removeBtn.textContent = "Remove Vehicle";
   removeBtn.type = "button";
   removeBtn.className = "remove-btn";
 
   removeBtn.onclick = function () {
     newRow.remove();
-    const wrapper = document.getElementById("form-wrapper");
-    const addBtn = document.createElement("button");
-    addBtn.textContent = "+ Add Vehicle";
-    addBtn.type = "button";
-    addBtn.className = "add-vehicle-btn";
-    addBtn.onclick = addVehicle;
-    wrapper.appendChild(addBtn);
   };
+
   newRow.appendChild(removeBtn);
+
   container.appendChild(newRow);
-  const btn = document.querySelector(".add-vehicle-btn");
-  if (btn) btn.remove();
 }
+  
+
 function showVehicle(btn) {
   const row = btn.closest(".vehicle-row");
 
