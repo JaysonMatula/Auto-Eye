@@ -181,6 +181,8 @@ newRow.querySelectorAll("input, label, .add-btn").forEach(el => {
 newRow.querySelector("#make").disabled = false;
   newRow.querySelectorAll(".remove-btn").forEach(btn => btn.remove());
   container.appendChild(newRow);
+  const addBtn = document.querySelector(".add-vehicle-btn");
+  if (addBtn) addBtn.style.display = "none";
 }
   
 function showVehicle(btn) {
@@ -216,8 +218,7 @@ if (removeBtn) {
 display.innerHTML = `
   <h2>${query}</h2>
 `;
-const addBtn = document.querySelector(".add-vehicle-btn");
-if (addBtn) addBtn.style.display = "inline-block";
+
 //  output.innerHTML = `
 //  <h2>${query}</h2>
 //  `;
@@ -237,6 +238,9 @@ if (addBtn) addBtn.style.display = "inline-block";
     fields.forEach(el => el.style.display = "block");
 
     removeBtn.remove();
+
+    const addBtn = document.querySelector(".add-vehicle-btn");
+    if (addBtn) addBtn.style.display = "inline-block";
   };
 
   row.appendChild(removeBtn);
