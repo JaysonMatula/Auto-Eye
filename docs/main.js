@@ -190,8 +190,8 @@ function showVehicle(btn) {
   const model = row.querySelector("#model").value;
   const year = row.querySelector("#year").value;
 
-  if (!make || !model) {
-    alert("Please enter at least make and model");
+  if (!make || !model || !year) {
+    alert("Please enter make, model, and year");
     return;
   }
 
