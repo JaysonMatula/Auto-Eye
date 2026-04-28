@@ -246,8 +246,6 @@ if (row === rows[0]) {
 
     removeBtn.remove();
 
-    const addBtn = document.querySelector(".add-vehicle-btn");
-    if (addBtn) addBtn.style.display = "inline-block";
   };
 
   row.appendChild(removeBtn);
