@@ -218,6 +218,13 @@ if (removeBtn) {
 display.innerHTML = `
   <h2>${query}</h2>
 `;
+const container = document.getElementById("form-container");
+const rows = container.querySelectorAll(".vehicle-row");
+
+if (row === rows[0]) {
+  const addBtn = document.querySelector(".add-vehicle-btn");
+  if (addBtn) addBtn.style.display = "inline-block";
+}
 
 //  output.innerHTML = `
 //  <h2>${query}</h2>
