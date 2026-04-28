@@ -179,7 +179,7 @@ newRow.querySelectorAll("input, label, .add-btn").forEach(el => {
 });
 
 newRow.querySelector("#make").disabled = false;
-
+  newRow.querySelectorAll(".remove-btn").forEach(btn => btn.remove());
   container.appendChild(newRow);
 }
   
