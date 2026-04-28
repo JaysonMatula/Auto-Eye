@@ -221,7 +221,7 @@ display.innerHTML = `
 const container = document.getElementById("form-container");
 const rows = container.querySelectorAll(".vehicle-row");
 
-if (row === rows[0]) {
+if (row === rows[0]) && rows.length === 1) {
   const addBtn = document.querySelector(".add-vehicle-btn");
   if (addBtn) addBtn.style.display = "inline-block";
 }
