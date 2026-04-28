@@ -181,37 +181,8 @@ newRow.querySelectorAll("input, label, .add-btn").forEach(el => {
 newRow.querySelector("#make").disabled = false;
 
   container.appendChild(newRow);
-
-const rows = container.querySelectorAll(".vehicle-row");
-
-if (rows.length === 2) {
-  rows.forEach(row => {
-    if (!row.querySelector(".remove-btn")) {
-      const btn = document.createElement("button");
-      btn.textContent = "Remove Vehicle";
-      btn.type = "button";
-      btn.className = "remove-btn";
-
-      btn.onclick = function () {
-        row.remove();
-
-        const addBtn = document.querySelector(".add-vehicle-btn");
-        if (container.children.length < 2 && addBtn) {
-          addBtn.style.display = "none";
-        }
-
-        if (container.children.length === 1) {
-          container.querySelectorAll(".remove-btn").forEach(b => b.remove());
-        }
-      };
-
-      row.appendChild(btn);
-    }
-  });
-  }
 }
   
-
 function showVehicle(btn) {
   const row = btn.closest(".vehicle-row");
 
@@ -256,4 +227,18 @@ if (addBtn) addBtn.style.display = "inline-block";
 
   const fields = row.querySelectorAll("input, label, .add-btn");
   fields.forEach(el => el.style.display = "none");
+  if (!row.querySelector(".remove-btn")) {
+  const removeBtn = document.createElement("button");
+  removeBtn.textContent = "Remove Vehicle";
+  removeBtn.className = "remove-btn";
+
+  removeBtn.onclick = function () {
+    display.remove();
+    fields.forEach(el => el.style.display = "block");
+
+    removeBtn.remove();
+  };
+
+  row.appendChild(removeBtn);
+}
 }
