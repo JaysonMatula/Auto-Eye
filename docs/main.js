@@ -217,7 +217,19 @@ if (removeBtn) {
 
 display.innerHTML = `
   <h2>${query}</h2>
+  <button class="graph-btn">View Graph</button>
+  <canvas class="graph-canvas" width="400" height="250" style="display:none;"></canvas>
 `;
+  
+const graphBtn = display.querySelector(".graph-btn");
+const canvas = display.querySelector(".graph-canvas");
+
+graphBtn.onclick = function () {
+  canvas.style.display = "block";
+  drawGraph(canvas, year);
+};
+
+  
 const container = document.getElementById("form-container");
 const rows = container.querySelectorAll(".vehicle-row");
 
@@ -250,4 +262,24 @@ if (row === rows[0] && rows.length === 1) {
 
   row.appendChild(removeBtn);
 }
+}
+function drawGraph(canvas, year) {
+  const ctx = canvas.getContext("2d");
+
+  
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+ 
+  const values = [20, 40, 35, 60, 55, 75];
+
+  ctx.beginPath();
+  ctx.moveTo(0, canvas.height - values[0]);
+
+  values.forEach((val, i) => {
+    ctx.lineTo(i * 60, canvas.height - val);
+  });
+
+  ctx.strokeStyle = "blue";
+  ctx.lineWidth = 2;
+  ctx.stroke();
 }
